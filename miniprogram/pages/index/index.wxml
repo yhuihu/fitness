@@ -1,0 +1,114 @@
+<view class="page">
+    <!-- 顶部概览卡片 -->
+    <view class="hero">
+        <view class="hero-title">{{planName || '我的健身计划'}}</view>
+        <view class="hero-sub">{{planItems.length}} 个训练项 · 循环 {{cycleDuration}} 分钟</view>
+    </view>
+
+    <!-- 基本设置 -->
+    <view class="block-title">基本设置</view>
+    <view class="card">
+        <view class="form-item">
+            <view class="form-label">计划名称</view>
+            <van-field
+                value="{{planName}}"
+                placeholder="例如：力量训练计划"
+                border="{{false}}"
+                bind:change="onPlanNameInput"
+            />
+        </view>
+        <view class="divider"></view>
+        <view class="form-item">
+            <view class="form-label">循环时长（分钟）</view>
+            <van-field
+                value="{{cycleDuration}}"
+                type="digit"
+                placeholder="5 - 120"
+                border="{{false}}"
+                bind:change="onCycleDurationInput"
+            />
+        </view>
+    </view>
+
+    <van-button type="primary" block bindtap="handleAddItem" custom-class="add-btn">
+        添加训练项
+    </van-button>
+
+    <!-- 计划列表 -->
+    <view class="block-title">
+        训练计划
+        <text class="block-hint">共 {{planItems.length}} 项</text>
+    </view>
+
+    <view wx:if="{{planItems.length === 0}}" class="card empty-card">
+        <view class="empty-emoji">🏋️</view>
+        <view class="empty-text">还没有训练项，点击上方按钮添加</view>
+    </view>
+
+    <view wx:else>
+        <view wx:for="{{planItems}}" wx:key="index" class="item-card">
+            <view class="item-head">
+                <view class="item-index">{{index + 1}}</view>
+                <view class="item-name">{{item.name}}</view>
+            </view>
+            <view class="item-stats">
+                <van-tag plain type="primary">{{item.sets}} 组</van-tag>
+                <van-tag plain type="primary">{{item.rest}} 秒休息</van-tag>
+                <van-tag plain type="primary">{{item.sets * 10}} 次</van-tag>
+            </view>
+            <view class="item-actions">
+                <view class="item-action" data-index="{{index}}" bindtap="handleEditItem">编辑</view>
+                <view class="item-action danger" data-index="{{index}}" bindtap="handleDeleteItem">删除</view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 添加/编辑弹窗 -->
+    <van-popup
+        show="{{showModal}}"
+        position="bottom"
+        round
+        bind:close="handleCloseModal"
+        custom-style="padding-bottom: env(safe-area-inset-bottom);"
+    >
+        <view class="modal">
+            <view class="modal-title">{{editingIndex >= 0 ? '编辑训练项' : '添加训练项'}}</view>
+            <view class="modal-form">
+                <view class="form-item">
+                    <view class="form-label">训练项名称</view>
+                    <van-field
+                        value="{{tempItem.name}}"
+                        placeholder="例如：深蹲"
+                        border="{{false}}"
+                        maxlength="20"
+                        bind:change="onTempNameInput"
+                    />
+                </view>
+                <view class="form-item">
+                    <view class="form-label">组数</view>
+                    <van-field
+                        value="{{tempItem.sets}}"
+                        type="digit"
+                        placeholder="例如：3"
+                        border="{{false}}"
+                        bind:change="onTempSetsInput"
+                    />
+                </view>
+                <view class="form-item">
+                    <view class="form-label">组间休息（秒）</view>
+                    <van-field
+                        value="{{tempItem.rest}}"
+                        type="digit"
+                        placeholder="例如：60"
+                        border="{{false}}"
+                        bind:change="onTempRestInput"
+                    />
+                </view>
+            </view>
+            <view class="modal-actions">
+                <van-button block bindtap="handleCloseModal">取消</van-button>
+                <van-button type="primary" block bindtap="handleSaveItem">保存</van-button>
+            </view>
+        </view>
+    </van-popup>
+</view>

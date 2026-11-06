@@ -1,0 +1,42 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/train/train",
+        "pages/setting/setting"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#667eea",
+        "navigationBarTitleText": "健身计划制定器",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#f6f7fb"
+    },
+    "tabBar": {
+        "color": "#7a7e83",
+        "selectedColor": "#667eea",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "icon/plan.png",
+                "selectedIconPath": "icon/plan-active.png",
+                "text": "计划制定"
+            },
+            {
+                "pagePath": "pages/train/train",
+                "iconPath": "icon/train.png",
+                "selectedIconPath": "icon/train-active.png",
+                "text": "训练模式"
+            },
+            {
+                "pagePath": "pages/setting/setting",
+                "iconPath": "icon/setting.png",
+                "selectedIconPath": "icon/setting-active.png",
+                "text": "设置"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

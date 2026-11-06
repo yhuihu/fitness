@@ -1,0 +1,17 @@
+{
+    "description": "健身计划制定器 - 微信小程序",
+    "appid": "wx7c546f421a91fd66",
+    "compileType": "miniprogram",
+    "libVersion": "3.7.0",
+    "projectname": "fitness-app",
+    "setting": {
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "urlCheck": false,
+        "minifyWXSS": true,
+        "minifyWXML": true,
+        "useNpm": false,
+        "useCompilerPlugins": false
+    }
+}

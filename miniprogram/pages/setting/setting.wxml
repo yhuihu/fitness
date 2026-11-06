@@ -1,0 +1,33 @@
+<view class="page">
+    <view class="hero">
+        <view class="hero-title">数据与设置</view>
+        <view class="hero-sub">计划数据自动保存在本地缓存中</view>
+    </view>
+
+    <view class="block-title">当前计划</view>
+    <view class="card">
+        <van-cell-group border="{{false}}">
+            <van-cell title="计划名称" value="{{planName || '未设置'}}" border="{{false}}" />
+            <van-cell title="循环时长" value="{{cycleDuration}} 分钟" />
+            <van-cell title="训练项数量" value="{{planItems.length}} 项" />
+        </van-cell-group>
+    </view>
+
+    <view class="block-title">数据缓存</view>
+    <view class="card">
+        <van-cell-group border="{{false}}">
+            <van-cell title="缓存状态" value="已保存到本地" border="{{false}}" />
+        </van-cell-group>
+    </view>
+
+    <view class="clear-wrap">
+        <van-button block custom-class="clear-btn" bindtap="clearStorage">清除所有缓存</van-button>
+    </view>
+
+    <view class="tips">
+        <view class="tips-title">说明</view>
+        <view class="tips-item">· 计划、循环时长与训练项会自动缓存</view>
+        <view class="tips-item">· 退出小程序或重新登录后记录不会丢失</view>
+        <view class="tips-item">· 清除缓存会删除全部计划数据，请谨慎操作</view>
+    </view>
+</view>

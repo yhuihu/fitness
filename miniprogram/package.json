@@ -1,0 +1,9 @@
+{
+  "name": "fitness-app-miniprogram",
+  "version": "1.0.0",
+  "description": "健身计划制定器 - 微信小程序",
+  "main": "app.js",
+  "dependencies": {
+    "@vant/weapp": "^1.11.7"
+  }
+}

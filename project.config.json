@@ -1,0 +1,16 @@
+{
+    "description": "健身计划制定器 - 微信小程序（从 fitness-app 根目录也可直接导入）",
+    "appid": "wx7c546f421a91fd66",
+    "compileType": "miniprogram",
+    "miniprogramRoot": "miniprogram/",
+    "projectname": "fitness-app",
+    "setting": {
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "urlCheck": false,
+        "minifyWXSS": true,
+        "minifyWXML": true,
+        "useNpm": false
+    }
+}

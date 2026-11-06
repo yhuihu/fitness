@@ -1,0 +1,68 @@
+<view class="page">
+    <!-- 训练概览 -->
+    <view class="hero">
+        <view class="hero-top">
+            <text class="hero-label">当前训练</text>
+            <text class="hero-count" wx:if="{{planItems.length > 0}}">{{currentItemIndex + 1}} / {{planItems.length}}</text>
+        </view>
+        <view class="hero-name">{{currentItemName || '暂无训练项'}}</view>
+        <view class="hero-sub" wx:if="{{isTraining}}">训练进行中，请完成 {{currentSets}} 组</view>
+        <view class="hero-sub" wx:else>前往「计划制定」添加训练项后开始</view>
+    </view>
+
+    <!-- 休息倒计时 -->
+    <view wx:if="{{showRestTimer}}" class="rest-card">
+        <view class="rest-label">组间休息</view>
+        <view class="rest-number">{{restRemainingTime}}<text class="rest-unit">秒</text></view>
+        <view class="rest-progress">
+            <view class="rest-progress-inner" style="width: {{restPercent}}%"></view>
+        </view>
+    </view>
+
+    <!-- 下一项预览 -->
+    <view wx:if="{{nextItemName}}" class="next-card">
+        <text class="next-label">下一项</text>
+        <text class="next-name">{{nextItemName}}</text>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="actions">
+        <van-button
+            type="primary"
+            block
+            custom-class="main-btn"
+            bindtap="handleToggleTraining"
+            disabled="{{planItems.length === 0}}"
+        >
+            {{isTraining ? '结束训练' : '开始训练'}}
+        </van-button>
+        <van-button
+            block
+            custom-class="skip-btn"
+            wx:if="{{showRestTimer}}"
+            bindtap="handleSkipRest"
+        >
+            跳过休息
+        </van-button>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{planItems.length === 0}}" class="card empty-card">
+        <view class="empty-emoji">🏋️</view>
+        <view class="empty-text">还没有训练项，请先在「计划制定」中添加</view>
+    </view>
+
+    <!-- 计划预览 -->
+    <view wx:if="{{planItems.length > 0}}" class="preview">
+        <view class="block-title">训练顺序</view>
+        <view
+            wx:for="{{planItems}}"
+            wx:key="index"
+            class="preview-item {{index === currentItemIndex ? 'active' : ''}}"
+        >
+            <text class="preview-index">{{index + 1}}</text>
+            <text class="preview-name">{{item.name}}</text>
+            <text class="preview-meta">{{item.sets}} 组 · 休息 {{item.rest}} 秒</text>
+        </view>
+    </view>
+</view>
